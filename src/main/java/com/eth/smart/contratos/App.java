@@ -2,6 +2,8 @@ package com.eth.smart.contratos;
 
 import java.util.concurrent.ExecutionException;
 
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.Web3jService;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
@@ -10,21 +12,19 @@ import org.web3j.protocol.infura.InfuraHttpService;
 
 public class App 
 {
+	private static String walletFile = "UTC--2017-04-19T18-14-12.599000000Z--1539beb0920cbb05e4e499c3f6795fac88339e34.json";
 	 
-    public static void main( String[] args ) throws InterruptedException, ExecutionException
+    public static void main(String[] args) throws Exception
     {
     	Web3jService inf = new InfuraHttpService("https://ropsten.infura.io/1bFTbNDTBv3jMPXnANB0");
     	Web3j web3 = Web3j.build(inf);	 
     	Web3ClientVersion web3ClientVersion = web3.web3ClientVersion().sendAsync().get();
-    	String clientVersion = web3ClientVersion.getWeb3ClientVersion();
-    	System.out.println(clientVersion);
     	
-    	web3.web3ClientVersion().observable().subscribe(x -> {
-    		String clientVersionx = x.getWeb3ClientVersion();
-    		System.out.println("---- observable");
-    		System.out.println(clientVersionx);
-    	    
-    	});
+    	String clientVersion = web3ClientVersion.getWeb3ClientVersion();
+    	Credentials credentials = WalletUtils.loadCredentials("123456", "/wallet_eth/"+App.walletFile);
+
+    	
+    	
     }
 }
 
