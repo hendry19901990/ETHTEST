@@ -38,4 +38,35 @@ https://docs.web3j.io
 https://github.com/web3j/web3j
 https://github.com/adridadou/eth-contract-api
 
+install solidity in linux
+
+http://solidity.readthedocs.io/en/develop/installing-solidity.html#binary-packages
+
+*/
+
+/*
+pragma solidity ^0.4.10;
+
+contract mortal {
+     
+    address owner;
+  
+    function mortal() { owner = msg.sender; }
+     
+    function kill() { if (msg.sender == owner) selfdestruct(owner); }
+}
+
+contract greeter is mortal {
+    
+    string greeting;
+  
+    function greeter(string _greeting) public {
+        greeting = _greeting;
+    }
+
+    function greet() constant returns (string) {
+        return greeting;
+    }
+}
+
 */
